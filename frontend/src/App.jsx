@@ -45,7 +45,7 @@ function App() {
       </form>
       <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
         {movies.map((movie) => (
-          <div key={movie.id} style={{ border: '1px solid white', padding: '10px', width: '200px' }}>
+          <div key={movie._id} style={{ border: '1px solid white', padding: '10px', width: '200px' }}>
             <h3>{movie.title}</h3>
             <img src={movie.image} alt={movie.title} style={{ width: '100%', height: 'auto' }} />
           </div>
