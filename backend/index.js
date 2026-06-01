@@ -38,6 +38,16 @@ app.post('/api/postMovie', async (req, res) => {
     res.status(500).json('lỗi thêm dữ liệu')
   }
 });
+app.delete('/api/movies/:id', async (req, res) => {
+  try {
+    const id = req.params.id
+    await Movie.findByIdAndDelete(id)
+    res.json("đã xóa thành công")
+  } catch (error) {
+
+    res.status(500).json("lỗi khi xóa dữ liệu")
+  }
+})
 // Chạy server
 app.listen(PORT, () => {
   console.log(`Server đang chạy tại http://localhost:${PORT}`);

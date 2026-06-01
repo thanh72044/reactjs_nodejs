@@ -31,9 +31,27 @@ function App() {
       alert("thêm phim thành công")
       setTitle('')
       setImage('')
-      window.location.reload()
+      fetch('http://localhost:5000/api/movies').then(Response => {
+        return Response.json()
+      }).then(data => {
+        setmovies(data)
+      })
     })
       .catch(error => console.log("lỗi API", error))
+  }
+  const handleDelete = (id) => {
+    fetch('http://localhost:5000/api/movies/' + id, {
+      method: 'DELETE'
+    }).then(Response => {
+      return Response.json()
+    }).then(data => {
+      alert("xóa phim thành công")
+      fetch('http://localhost:5000/api/movies').then(Response => {
+        return Response.json()
+      }).then(data => {
+        setmovies(data)
+      })
+    })
   }
   return (
     <div>
@@ -47,6 +65,7 @@ function App() {
         {movies.map((movie) => (
           <div key={movie._id} style={{ border: '1px solid white', padding: '10px', width: '200px' }}>
             <h3>{movie.title}</h3>
+            <button onClick={() => handleDelete(movie._id)}> xóa </button>
             <img src={movie.image} alt={movie.title} style={{ width: '100%', height: 'auto' }} />
           </div>
         ))}
