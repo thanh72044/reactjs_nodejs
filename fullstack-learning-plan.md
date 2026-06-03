@@ -72,17 +72,17 @@
 
 ---
 
-## Tuần 5: Hoàn thiện ứng dụng CRUD
+## Tuần 5: Hoàn thiện ứng dụng CRUD (✅ Đã hoàn thành)
 *Mục tiêu: Cập nhật (Update) và Xóa (Delete) dữ liệu - Mảnh ghép cuối cùng.*
 
 ### 🔵 Node.js
-- Tạo API `DELETE /api/movies/:id` - Tìm phim theo ID trong Database và xóa đi.
-- Tạo API `PUT /api/movies/:id` - Tìm phim theo ID và cập nhật nội dung.
+- [x] Tạo API `DELETE /api/movies/:id` - Tìm phim theo ID trong Database và xóa đi.
+- [x] Tạo API `PUT /api/movies/:id` - Tìm phim theo ID và cập nhật nội dung.
 
 ### 🟢 React.js
-- Thêm nút "Sửa" và "Xóa" bên cạnh mỗi bộ phim trên giao diện.
-- Gắn hàm gọi API Xóa vào nút Xóa. Xử lý xóa phần tử đó khỏi State của React (để UI ẩn đi mà không cần load lại trang).
-- Làm giao diện Sửa: Bấm "Sửa", hiển thị thông tin cũ lên ô Input, chỉnh sửa và bấm "Lưu".
+- [x] Thêm nút "Sửa" và "Xóa" bên cạnh mỗi bộ phim trên giao diện.
+- [x] Gắn hàm gọi API Xóa vào nút Xóa. Xử lý xóa phần tử đó khỏi State của React (để UI ẩn đi mà không cần load lại trang).
+- [x] Làm giao diện Sửa: Bấm "Sửa", hiển thị thông tin cũ lên ô Input, chỉnh sửa và bấm "Lưu".
 
 ---
 
