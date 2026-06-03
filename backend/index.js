@@ -61,6 +61,15 @@ app.put('/api/updateMovies/:id', async (req, res) => {
     res.status(500).json("lỗi khi cậu nhậ̀t dữ liệu")
   }
 })
+app.get('/api/movies/:id', async (req, res) => {
+  try {
+    const id = req.params.id
+    const movie = await Movie.findById(id)
+    res.json(movie)
+  } catch (error) {
+    res.status(500).json('lỗi khi lấy dữ liệu')
+  }
+});
 
 // Chạy server
 app.listen(PORT, () => {
