@@ -94,7 +94,7 @@
 - [x] Khởi tạo kiến trúc chia Trang (Pages) thay vì nhét tất cả vào 1 màn hình.
 - [x] Tạo các route: `/` (Trang danh sách), `/movie/:id` (Trang xem chi tiết một bộ phim).
 - [x] Cách lấy tham số (id) từ thanh địa chỉ URL.
-- [ ] Gắn API vào Trang Chi Tiết để hiển thị thông tin phim thực tế.
+- [x] Gắn API vào Trang Chi Tiết để hiển thị thông tin phim thực tế.
 
 ### 🔵 Node.js
 - [x] Tạo API `GET /api/movies/:id` - Trả về dữ liệu chi tiết của một bộ phim dựa vào cái ID mà React gửi lên.
