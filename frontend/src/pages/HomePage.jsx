@@ -23,7 +23,10 @@ function HomePage() {
         }
         fetch('http://localhost:5000/api/postMovie', {
             method: 'POST',
-            headers: { 'content-type': 'application/json' },
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
             body: JSON.stringify(dataToSend)
         }).then(Response => {
             return Response.json()
@@ -42,7 +45,8 @@ function HomePage() {
     }
     const handleDelete = (id) => {
         fetch('http://localhost:5000/api/movies/' + id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
         }).then(Response => {
             return Response.json()
         }).then(data => {
@@ -62,7 +66,10 @@ function HomePage() {
         }
         fetch('http://localhost:5000/api/updateMovies/' + editingId, {
             method: 'PUT',
-            headers: { 'content-type': 'application/json' },
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
             body: JSON.stringify(dataToSend)
         }).then(Response => {
             return Response.json()
