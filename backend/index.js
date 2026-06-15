@@ -54,7 +54,7 @@ app.post('/api/register', async (req, res) => {
 const JWT_SECRET = 'VURVPcnfhjWFHWOEE121!@$#$'
 
 const authMiddleware = (req, res, next) => {
-  const token = req.headers.authorization?.split("")[1];
+  const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
     return res.status(401).json("không có quyền truy cập,vui lòng đăng nhập")
   }
@@ -104,7 +104,7 @@ app.get('/api/movies', async (req, res) => {
     res.status(500).json('lỗi khi lấy dữ liệu')
   }
 });
-app.post('/api/postMovie', async (req, res) => {
+app.post('/api/postMovie', authMiddleware, async (req, res) => {
   try {
     const newMovie = await
       Movie.create({
@@ -116,7 +116,7 @@ app.post('/api/postMovie', async (req, res) => {
     res.status(500).json('lỗi thêm dữ liệu')
   }
 });
-app.delete('/api/movies/:id',authMiddleware, async (req, res) => {
+app.delete('/api/movies/:id', authMiddleware, async (req, res) => {
   try {
     const id = req.params.id
     await Movie.findByIdAndDelete(id)
@@ -127,7 +127,7 @@ app.delete('/api/movies/:id',authMiddleware, async (req, res) => {
   }
 })
 
-app.put('/api/updateMovies/:id', async (req, res) => {
+app.put('/api/updateMovies/:id', authMiddleware, async (req, res) => {
   try {
     const id = req.params.id
     const updateMovie = await Movie.findByIdAndUpdate(id, {
