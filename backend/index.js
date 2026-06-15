@@ -36,7 +36,7 @@ app.post('/api/register', async (req, res) => {
     const { username, password } = req.body;
     const existingUser = await User.findOne({ username: username })
     if (existingUser) {
-      res.status(400).json('tên đăng nhập đã tồn tại')
+      return res.status(400).json('tên đăng nhập đã tồn tại')
     }
     const saltRound = 10;
     const hashPassword = await bcrypt.hash(password, saltRound)
@@ -52,14 +52,30 @@ app.post('/api/register', async (req, res) => {
 })
 
 const JWT_SECRET = 'VURVPcnfhjWFHWOEE121!@$#$'
+
+const authMiddleware = (req, res, next) => {
+  const token = req.headers.authorization?.split("")[1];
+  if (!token) {
+    return res.status(401).json("không có quyền truy cập,vui lòng đăng nhập")
+  }
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET)
+    req.user = decoded
+    next()
+  } catch (error) {
+    return res.status(500).json("token không hợp lệ hoặc đã hết hạn")
+  }
+
+}
+
 app.post('/api/login', async (req, res) => {
   try {
     const { username, password } = req.body;
-    const user = await user.findOne({ username: username })
+    const user = await User.findOne({ username: username })
     if (!user) {
       return res.status(400).json('sai tên đăng nhập')
     }
-    const isPasswordValid = await bcrypt.compare({ password: user.password })
+    const isPasswordValid = await bcrypt.compare(password, user.password)
     if (!isPasswordValid) {
       return res.status(400).json('sai mật khẩu')
     }
@@ -100,7 +116,7 @@ app.post('/api/postMovie', async (req, res) => {
     res.status(500).json('lỗi thêm dữ liệu')
   }
 });
-app.delete('/api/movies/:id', async (req, res) => {
+app.delete('/api/movies/:id',authMiddleware, async (req, res) => {
   try {
     const id = req.params.id
     await Movie.findByIdAndDelete(id)
