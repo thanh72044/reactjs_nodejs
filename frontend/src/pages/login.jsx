@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 function LoginPage() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false)
     const [isLogin, setIsLogin] = useState(true)
     const navigate = useNavigate()
 
@@ -72,8 +73,23 @@ function LoginPage() {
                     <div className="input-group">
                         <input className="input-field" type="text" placeholder='Tên đăng nhập' value={username} onChange={(e) => setUsername(e.target.value)} />
                     </div>
-                    <div className="input-group">
-                        <input className="input-field" type="password" placeholder='Mật khẩu' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <div className="input-group" style={{ position: 'relative' }}>
+                        <input className="input-field" type={showPassword ? "text" : "password"} placeholder='Mật khẩu' value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <button type="button" onClick={() => setShowPassword(!showPassword)} title={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
+                            style={{
+                                position: 'absolute',
+                                right: '10px',
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                background: 'none',
+                                border: 'none',
+                                color: '#b3b3b3',
+                                cursor: 'pointer',
+                                fontSize: '1.2rem'
+
+                            }}>
+                            {showPassword ? '👁️' : '🙈'}
+                        </button>
                     </div>
                     <button className="btn-primary" type="submit">
                         {isLogin ? 'Đăng Nhập' : 'Đăng Ký'}
