@@ -52,7 +52,7 @@ function LoginPage() {
             if (Response.ok) {
                 console.log('đăng ký thành công', data)
                 alert('đăng ký thành công')
-                setIslogin(true)
+                setIsLogin(true)
             } else {
                 alert(data)
             }
@@ -62,30 +62,28 @@ function LoginPage() {
     }
 
     return (
-        <div style={{ maxWidth: '300px', margin: '50px auto', textAlign: 'center' }}>
-            <form onSubmit={isLogin ? handleLogin : handleRegister}>
-                <h3>{isLogin ? 'Đăng nhập' : 'Đăng ký tài khoản'}</h3>
-
-                <input type="text" placeholder='username' value={username} onChange={(e) => setUsername(e.target.value)}
-                    style={{ width: '100%', marginBottom: '10px', padding: '5px' }}
-                />
-                <input type="password" placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)}
-                    style={{ width: '100%', marginBottom: '10px', padding: '5px' }}
-                />
-
-                <button type="submit" style={{ width: '100%', padding: '5px', marginBottom: '10px' }}>
-                    {isLogin ? 'Đăng nhập' : 'Đăng ký'}
-                </button>
-            </form>
-            {/* Nút chuyển đổi qua lại giữa Đăng nhập và Đăng ký */}
-            <p>
-                {isLogin ? "Chưa có tài khoản? " : "Đã có tài khoản? "}
-                <button
-                    onClick={() => setIsLogin(!isLogin)}
-                    style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer', textDecoration: 'underline' }}>
-                    {isLogin ? 'Đăng ký ngay' : 'Đăng nhập'}
-                </button>
-            </p>
+        <div className="app-container">
+            <div className="form-container">
+                <h2 className="form-title">{isLogin ? 'Đăng Nhập' : 'Đăng Ký Tài Khoản'}</h2>
+                <form onSubmit={isLogin ? handleLogin : handleRegister}>
+                    <div className="input-group">
+                        <input className="input-field" type="text" placeholder='Tên đăng nhập' value={username} onChange={(e) => setUsername(e.target.value)} />
+                    </div>
+                    <div className="input-group">
+                        <input className="input-field" type="password" placeholder='Mật khẩu' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </div>
+                    <button className="btn-primary" type="submit">
+                        {isLogin ? 'Đăng Nhập' : 'Đăng Ký'}
+                    </button>
+                </form>
+                {/* Nút chuyển đổi qua lại giữa Đăng nhập và Đăng ký */}
+                <p className="switch-text">
+                    {isLogin ? "Chưa có tài khoản? " : "Đã có tài khoản? "}
+                    <button className="switch-btn" onClick={() => setIsLogin(!isLogin)}>
+                        {isLogin ? 'Đăng ký ngay' : 'Đăng nhập'}
+                    </button>
+                </p>
+            </div>
         </div>
     )
 

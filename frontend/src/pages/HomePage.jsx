@@ -86,34 +86,44 @@ function HomePage() {
         }).catch(error => console.log("lỗi API", error))
     }
     return (
-        <div>
-            <h1>thông điệp từ backend</h1>
-            <form onSubmit={editingId ? handleUpdate : handleMovies}>
-                <input type="text" placeholder='tên phim' value={title} onChange={((e) => setTitle(e.target.value))} />
-                <input type="text" placeholder='hình ảnh' value={image} onChange={((e) => setImage(e.target.value))} />
-                <button type='submit'>
-                    {editingId ? 'cập nhật phim' : 'thêm phim'}
+        <div className="app-container">
+            <h1 style={{ marginBottom: '2rem' }}>Thư Viện Phim</h1>
+            <form className="add-movie-form" onSubmit={editingId ? handleUpdate : handleMovies}>
+                <input className="input-field" type="text" placeholder='Tên phim' value={title} onChange={((e) => setTitle(e.target.value))} />
+                <input className="input-field" type="text" placeholder='URL hình ảnh' value={image} onChange={((e) => setImage(e.target.value))} />
+                <button className="btn-primary" type='submit'>
+                    {editingId ? 'Cập Nhật Phim' : 'Thêm Phim'}
                 </button>
             </form>
 
-            <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+            <div className="movies-header">
+                <h2>Danh sách phim hiện có</h2>
+            </div>
+
+            <div className="movies-grid">
                 {movies.map((movie) => (
-                    <div key={movie._id} style={{ border: '1px solid white', padding: '10px', width: '200px' }}>
-                        <h3>{movie.title}</h3>
-                        <Link to={`/movie/${movie._id}`}  >
-                            <button>xem chi tiết</button>
-                        </Link>
-                        <button onClick={() => handleDelete(movie._id)}> xóa </button>
-                        <button onClick={() => {
-                            seteditingId(movie._id);
-                            setTitle(movie.title);
-                            setImage(movie.image);
-                        }}>sửa</button>
-                        <img src={movie.image} alt={movie.title} style={{ width: '100%', height: 'auto' }} />
+                    <div className="movie-card" key={movie._id}>
+                        <div className="movie-image-container">
+                            <img className="movie-image" src={movie.image} alt={movie.title} />
+                        </div>
+                        <div className="movie-info">
+                            <h3 className="movie-title">{movie.title}</h3>
+                            <div className="movie-actions">
+                                <Link to={`/movie/${movie._id}`} style={{ flex: 1, display: 'flex' }}>
+                                    <button className="btn-secondary" style={{ width: '100%' }}>Chi tiết</button>
+                                </Link>
+                                <button className="btn-secondary" onClick={() => {
+                                    seteditingId(movie._id);
+                                    setTitle(movie.title);
+                                    setImage(movie.image);
+                                }}>Sửa</button>
+                                <button className="btn-danger" onClick={() => handleDelete(movie._id)}>Xóa</button>
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>
-        </div >
+        </div>
     )
 
 }
