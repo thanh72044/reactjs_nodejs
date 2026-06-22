@@ -60,7 +60,10 @@ function LoginPage() {
             console.log('lỗi kết nối tới server')
         }
     }
-
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login')
+    }
     return (
         <div className="app-container">
             <div className="form-container">

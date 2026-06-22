@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 function HomePage() {
     const [editingId, seteditingId] = useState(null)
     const [movies, setmovies] = useState([])
@@ -85,9 +85,21 @@ function HomePage() {
             })
         }).catch(error => console.log("lỗi API", error))
     }
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login')
+    }
     return (
         <div className="app-container">
             <h1 style={{ marginBottom: '2rem' }}>Thư Viện Phim</h1>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+                <h1>Thư Viện Phim</h1>
+                <button className="btn-danger" onClick={handleLogout} style={{ width: 'auto', margin: 0 }}>
+                    Đăng xuất
+                </button>
+            </div>
+
             <form className="add-movie-form" onSubmit={editingId ? handleUpdate : handleMovies}>
                 <input className="input-field" type="text" placeholder='Tên phim' value={title} onChange={((e) => setTitle(e.target.value))} />
                 <input className="input-field" type="text" placeholder='URL hình ảnh' value={image} onChange={((e) => setImage(e.target.value))} />

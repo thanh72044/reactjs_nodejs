@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 
 const app = express();
 const PORT = 5000;
-const MONGODB_URL = 'mongodb+srv://thanhle:thanh7204@cluster0.wvh9y.mongodb.net/movies_db?appName=Cluster0'
+const MONGODB_URL = 'mongodb://thanhle:thanh7204@cluster0-shard-00-00.wvh9y.mongodb.net:27017,cluster0-shard-00-01.wvh9y.mongodb.net:27017,cluster0-shard-00-02.wvh9y.mongodb.net:27017/movies_db?ssl=true&replicaSet=atlas-12nnn9-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0'
 mongoose.connect(MONGODB_URL).then(() => console.log('thành công kết nối')).catch((eror) => console.log('lỗi kết nối mongo', eror))
 
 const movieSchema = new mongoose.Schema({
