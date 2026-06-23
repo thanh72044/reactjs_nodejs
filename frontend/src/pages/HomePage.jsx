@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import { Link, useNavigate } from 'react-router-dom';
+
+const API_URL = 'http://localhost:5000/api'
 function HomePage() {
     const [editingId, seteditingId] = useState(null)
     const [movies, setmovies] = useState([])
     const [title, setTitle] = useState('')
     const [image, setImage] = useState('')
     useEffect(() => {
-        fetch('http://localhost:5000/api/movies').then(Response => {
+        fetch(`${API_URL}/movies`).then(Response => {
             return Response.json()
         }).then(data => {
             setmovies(data)
@@ -21,7 +23,7 @@ function HomePage() {
             title: title,
             image: image
         }
-        fetch('http://localhost:5000/api/postMovie', {
+        fetch(`${API_URL}/postMovie`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -35,7 +37,7 @@ function HomePage() {
             alert("thêm phim thành công")
             setTitle('')
             setImage('')
-            fetch('http://localhost:5000/api/movies').then(Response => {
+            fetch(`${API_URL}/movies`).then(Response => {
                 return Response.json()
             }).then(data => {
                 setmovies(data)
@@ -44,14 +46,14 @@ function HomePage() {
             .catch(error => console.log("lỗi API", error))
     }
     const handleDelete = (id) => {
-        fetch('http://localhost:5000/api/movies/' + id, {
+        fetch(`${API_URL}/movies/` + id, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
         }).then(Response => {
             return Response.json()
         }).then(data => {
             alert("xóa phim thành công")
-            fetch('http://localhost:5000/api/movies').then(Response => {
+            fetch(`${API_URL}/movies`).then(Response => {
                 return Response.json()
             }).then(data => {
                 setmovies(data)
@@ -64,7 +66,7 @@ function HomePage() {
             title: title,
             image: image
         }
-        fetch('http://localhost:5000/api/updateMovies/' + editingId, {
+        fetch(`${API_URL}/updateMovies/` + editingId, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
