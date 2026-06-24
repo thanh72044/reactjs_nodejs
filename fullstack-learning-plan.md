@@ -108,15 +108,15 @@
 > Tuần này khá khó và mang tính logic cao, bạn có thể dành nhiều thời gian hơn cho tuần này.
 
 ### 🔵 Node.js
-- Tạo bảng dữ liệu (Model) cho Người dùng (User).
-- Viết API Đăng ký: Học cách băm/mã hóa mật khẩu bằng `bcrypt` trước khi lưu vào DB.
-- Viết API Đăng nhập: So sánh mật khẩu, nếu đúng thì tạo ra thẻ **JWT (JSON Web Token)** để trả về.
-- Tạo Middleware chặn các API (ví dụ: chỉ người đã đăng nhập mới được Xóa phim).
+- [x] Tạo bảng dữ liệu (Model) cho Người dùng (User).
+- [x] Viết API Đăng ký: Học cách băm/mã hóa mật khẩu bằng `bcrypt` trước khi lưu vào DB.
+- [x] Viết API Đăng nhập: So sánh mật khẩu, nếu đúng thì tạo ra thẻ **JWT (JSON Web Token)** để trả về.
+- [x] Tạo Middleware chặn các API (ví dụ: chỉ người đã đăng nhập mới được Xóa phim).
 
 ### 🟢 React.js
-- Tạo Form Đăng ký và Đăng nhập.
-- Gửi API lấy token về, lưu trữ token đó vào LocalStorage (Bộ nhớ trình duyệt).
-- **Context API**: Tạo một kho chứa toàn cục (Global state) để cả ứng dụng biết user này đã đăng nhập hay chưa (để thay nút "Login" thành Avatar người dùng).
+- [x] Tạo Form Đăng ký và Đăng nhập.
+- [x] Gửi API lấy token về, lưu trữ token đó vào LocalStorage (Bộ nhớ trình duyệt).
+- [ ] **Context API**: Tạo một kho chứa toàn cục (Global state) để cả ứng dụng biết user này đã đăng nhập hay chưa (để thay nút "Login" thành Avatar người dùng).
 
 ---
 

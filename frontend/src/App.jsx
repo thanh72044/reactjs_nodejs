@@ -2,10 +2,11 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import MovieDetail from './pages/MovieDetail';
 import LoginPage from './pages/login';
-
+import { useContext } from 'react';
+import { AuthContext } from './context/AuthContext';
 function ProtectedRoute({ children }) {
-  const token = localStorage.getItem('token')
-  if (!token) {
+  const { isAuthenticated } = useContext(AuthContext)
+  if (!isAuthenticated) {
     return <Navigate to="/login" replace />
   }
   return children
