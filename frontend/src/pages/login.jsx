@@ -1,6 +1,7 @@
 import React from 'react';
 import { data, useNavigate, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 function LoginPage() {
     const [username, setUsername] = useState('')
@@ -8,6 +9,7 @@ function LoginPage() {
     const [showPassword, setShowPassword] = useState(false)
     const [isLogin, setIsLogin] = useState(true)
     const navigate = useNavigate()
+    const { login, logout } = useContext(AuthContext)
 
     const handleLogin = async (e) => {
         e.preventDefault();

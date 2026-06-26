@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 const API_URL = 'http://localhost:5000/api'
 function HomePage() {
+    const { token, logout } = useContext(AuthContext)
     const [editingId, seteditingId] = useState(null)
     const [movies, setmovies] = useState([])
     const [title, setTitle] = useState('')
     const [image, setImage] = useState('')
+
     useEffect(() => {
         fetch(`${API_URL}/movies`).then(Response => {
             return Response.json()
@@ -89,7 +93,7 @@ function HomePage() {
     }
     const navigate = useNavigate();
     const handleLogout = () => {
-        localStorage.removeItem('token');
+        logout()
         navigate('/login')
     }
     return (
