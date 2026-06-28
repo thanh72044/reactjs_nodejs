@@ -31,7 +31,7 @@ function HomePage() {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(dataToSend)
         }).then(Response => {
@@ -52,7 +52,7 @@ function HomePage() {
     const handleDelete = (id) => {
         fetch(`${API_URL}/movies/` + id, {
             method: 'DELETE',
-            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            headers: { 'Authorization': `Bearer ${token}` }
         }).then(Response => {
             return Response.json()
         }).then(data => {
@@ -74,7 +74,7 @@ function HomePage() {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(dataToSend)
         }).then(Response => {

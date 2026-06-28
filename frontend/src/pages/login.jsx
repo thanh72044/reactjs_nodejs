@@ -28,7 +28,7 @@ function LoginPage() {
             if (Response.ok) {
                 console.log('đăng nhập thành công', data)
                 alert('đăng nhập thành công')
-                localStorage.setItem('token', data.token)
+                login(data.token)
                 navigate('/')
             } else {
                 alert(data)
